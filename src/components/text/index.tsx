@@ -9,8 +9,8 @@ interface TextProps {
 }
 
 const variantClasses: Record<TextVariant, string> = {
-  lg: 'text-2xl font-bold ',
-  sm: 'text-sm',
+  lg: 'text-2xl font-bold',
+  sm: 'text-sm font-medium',
   xs: 'text-xs'
 };
 

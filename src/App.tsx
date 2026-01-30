@@ -1,13 +1,18 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/authContext';
+import DashboardPage from './pages/dashboard';
 import LoginPage from './pages/login';
 
 function App() {
   return (
-    <AuthProvider>
-      <div className="min-h-screen flex items-center justify-center p-4">
-        <LoginPage />
-      </div>
-    </AuthProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          <Route path='/' element={<LoginPage />} />
+          <Route path='/dashboard' element={<DashboardPage />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 
