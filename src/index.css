@@ -35,3 +35,10 @@
   --sidebar-border: oklch(0.28 0.01 250);
   --sidebar-ring: oklch(0.75 0.15 55);
 }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 1rem;
+
+}
