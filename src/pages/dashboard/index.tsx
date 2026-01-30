@@ -1,12 +1,10 @@
 import { PackageIcon } from "lucide-react";
-import Sidebar from "../../components/sidebar";
 import Text from "../../components/text";
 import DashboardCard from "./components/card";
 
 export default function DashboardPage() {
 	return (
 		<div className="flex min-h-screen bg-[var(--background)]">
-			<Sidebar />
 			<main className="flex-1 overflow-auto">
 				<div className="p-6 space-y-6">
 					<div>

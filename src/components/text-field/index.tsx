@@ -1,4 +1,4 @@
-interface TextFieldProps {
+interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   type?: string;
   id?: string;

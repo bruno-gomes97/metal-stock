@@ -7,9 +7,9 @@ import Text from "../text";
 
 const listItemsNavigation = [
 	{ label: 'Dashboard', icon: <LayoutDashboardIcon className="w-5 h-5" />, to: '/dashboard', active: false },
-	{ label: 'Produtos', icon: <PackageIcon className="w-5 h-5" />, to: '/products', active: false },
+	{ label: 'Produtos', icon: <PackageIcon className="w-5 h-5" />, to: '/dashboard/products', active: false },
 	{ label: 'Buscar', icon: <SearchIcon className="w-5 h-5" />, to: '/search', active: false },
-	{ label: 'Adicionar Produto', icon: <CirclePlusIcon className="w-5 h-5" />, to: '/add-product', active: false },
+	{ label: 'Adicionar Produto', icon: <CirclePlusIcon className="w-5 h-5" />, to: '/dashboard/add-product', active: false },
 	{ label: 'Funcionários', icon: <UsersIcon className="w-5 h-5" />, to: '/employees', active: false },
 ]
 
