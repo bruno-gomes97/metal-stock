@@ -1,12 +1,47 @@
 import { ArrowLeftIcon, PackageIcon, SaveIcon } from "lucide-react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/button";
 import IconContainer from "../../components/icon-container";
 import Text from "../../components/text";
 import TextField from "../../components/text-field";
 import TextArea from "../../components/textarea";
+import { useProduct } from "../../context/productContext";
+import { generateProductCode } from "../../utils/products";
+
+interface AddProductFormPayload {
+	productCode: string;
+	productName: string;
+	productDescription: string;
+	productCategory: string;
+	productLocation: string;	
+	productQuantityInitial: number;
+	productQuantityMinimum: number;
+	productUnitValue: number;
+	productSupplier: string;
+}
+
+
 export default function AddProductsPage() {
 	const navigate = useNavigate();
+	const { register, handleSubmit } = useForm<AddProductFormPayload>();
+	const { addProduct } = useProduct();
+
+	const onSubmit = (payload: AddProductFormPayload) => {
+		const newProduct = {
+			id: crypto.randomUUID(),
+			code: payload.productCode,
+			name: payload.productName,
+			description: payload.productDescription,
+			category: payload.productCategory,
+			location: payload.productLocation,
+			quantityInitial: Number(payload.productQuantityInitial),
+			quantityMinimum: Number(payload.productQuantityMinimum),
+			unitValue: Number(payload.productUnitValue),
+			supplier: payload.productSupplier,
+		};
+		addProduct(newProduct);
+	}
 	
 	return (
 		<div className="p-6 space-y-6">
@@ -33,29 +68,29 @@ export default function AddProductsPage() {
 				</header>	
 			</div>
 			<section>
-				<form className="space-y-6">
+				<form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-						<TextField label="Código do Produto" id="product-code" type="text"/>
-						<TextField label="Nome do Prduto*" id="product-name" type="text" placeholder="Ex: Parafuso Sextavado M10"/>
+						<TextField label="Código do Produto" id="product-code" type="text" {...register('productCode')} value={generateProductCode()} />
+						<TextField label="Nome do Prduto*" id="product-name" type="text" placeholder="Ex: Parafuso Sextavado M10" {...register('productName')} />
 					</div>
 					<div className="space-y-2">
-						<TextArea label="Descrição" id="product-description" placeholder="Descrição detalhada do produto..."/>
+						<TextArea label="Descrição" id="product-description" placeholder="Descrição detalhada do produto..." {...register('productDescription')} />
 					</div>
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-						<TextField label="Categoria*" id="product-category" type="text" placeholder="Ex: Parafuso, Chapas, Ferramentas"/>
-						<TextField label="Localização*" id="product-location" type="text" placeholder="Ex: Prateleira A1, Galpão 2"/>
+						<TextField label="Categoria*" id="product-category" type="text" placeholder="Ex: Parafuso, Chapas, Ferramentas" {...register('productCategory')} />
+						<TextField label="Localização*" id="product-location" type="text" placeholder="Ex: Prateleira A1, Galpão 2" {...register('productLocation')} />
 					</div>
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-						<TextField label="Quantidade Inicial" id="product-quantity-initial" type="number" min={0} />
-						<TextField label="Quantidade Minima" id="product-quantity-minimum" type="number" min={0} />
-						<TextField label="Valor Unitário (R$)" id="product-unit-value" type="number" min={0} />
+						<TextField label="Quantidade Inicial" id="product-quantity-initial" type="number" min={0} {...register('productQuantityInitial')} />
+						<TextField label="Quantidade Minima" id="product-quantity-minimum" type="number" min={0} {...register('productQuantityMinimum')} />
+						<TextField label="Valor Unitário (R$)" id="product-unit-value" type="number" min={0} {...register('productUnitValue')} />
 					</div>
 					<div className="space-y-2">
-						<TextField label="Fornecedor" id="product-supplier" type="text" placeholder="Nome do fornecedor"/>
+						<TextField label="Fornecedor" id="product-supplier" type="text" placeholder="Nome do fornecedor" {...register('productSupplier')} />
 					</div>
 					<footer className="flex justify-end gap-3 pt-4">
 						<Button variant="tertiary" width="36">Cancelar</Button>
-						<Button variant="primary" width="36">
+						<Button type="submit" variant="primary" width="36">
 							<SaveIcon className="w-10 h-10"/> 
 							Salvar Produto
 						</Button>

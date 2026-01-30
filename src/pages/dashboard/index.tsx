@@ -3,6 +3,7 @@ import Text from "../../components/text";
 import DashboardCard from "./components/card";
 
 export default function DashboardPage() {
+
 	return (
 		<div className="flex min-h-screen bg-[var(--background)]">
 			<main className="flex-1 overflow-auto">
