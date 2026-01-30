@@ -37,7 +37,7 @@ export default function LoginPage() {
             <WrenchIcon className="w-8 h-8 text-[var(--primary-foreground)]" />
           </IconContainer>
           <div>
-            <Text variant="lg" className="text-[var(--foreground)]">
+            <Text variant="xl" className="text-[var(--foreground)]">
               MetalStock
             </Text>
             <Text variant="sm" className="text-[var(--muted-foreground)]">

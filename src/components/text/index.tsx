@@ -1,6 +1,6 @@
 import type { JSX, ReactNode } from 'react';
 
-type TextVariant = 'lg' | 'sm' | 'xs';
+type TextVariant = 'xl' | 'lg' | 'sm' | 'xs';
 
 interface TextProps {
   children: ReactNode;
@@ -9,13 +9,15 @@ interface TextProps {
 }
 
 const variantClasses: Record<TextVariant, string> = {
-  lg: 'text-2xl font-bold',
+  xl: 'text-2xl font-bold',
+  lg: 'text-lg font-bold',
   sm: 'text-sm font-medium',
   xs: 'text-xs'
 };
 
 const variantElement: Record<TextVariant, keyof JSX.IntrinsicElements> = {
-  lg: 'h1',
+  xl: 'h1',
+  lg: 'h3',
   sm: 'p',
   xs: 'p',
 };

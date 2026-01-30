@@ -37,7 +37,7 @@ export default function Sidebar() {
 						<WrenchIcon className="w-5 h-5 text-[var(--primary-foreground)]" />
 					</IconContainer>
 					<div>
-						<Text variant="lg" className="text-[var(--sidebar-foreground)]">MetalStock</Text>
+						<Text variant="xl" className="text-[var(--sidebar-foreground)]">MetalStock</Text>
 						<Text variant="xs" className="text-[var(--muted-foreground)]">Controle de Estoque</Text>
 					</div>
 				</div>
