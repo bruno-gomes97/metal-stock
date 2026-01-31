@@ -1,9 +1,9 @@
 /* eslint-disable react-refresh/only-export-components*/
 import React from "react";
 
-const KEY_PRODUCTS = 'metalstock:products';
+export const KEY_PRODUCTS = 'metalstock:products';
 
-export interface ProductPayload {
+export interface ProductPayload extends Record<string, unknown> {
 	id: string;
 	code: string;
 	name: string;
@@ -34,9 +34,11 @@ export const ProductProvider = ({children}: {children: React.ReactNode}) => {
 	}, []);
 
 	const addProduct = (product: ProductPayload) => {
-		localStorage.setItem(KEY_PRODUCTS, JSON.stringify(product))
-		setProducts(products ? [...products, product] : [product])
-		console.log('Produto adicionado:', product);
+		setProducts(prevProducts => {
+			const updatedProducts = prevProducts && Array.isArray(prevProducts) ? [...prevProducts, product] : [product];
+			localStorage.setItem(KEY_PRODUCTS, JSON.stringify(updatedProducts));
+			return updatedProducts;
+		});
 	}
 
 	return (

@@ -21,7 +21,6 @@ interface AddProductFormPayload {
 	productSupplier: string;
 }
 
-
 export default function AddProductsPage() {
 	const navigate = useNavigate();
 	const { register, handleSubmit } = useForm<AddProductFormPayload>();
@@ -41,6 +40,7 @@ export default function AddProductsPage() {
 			supplier: payload.productSupplier,
 		};
 		addProduct(newProduct);
+		navigate('/dashboard/products');
 	}
 	
 	return (

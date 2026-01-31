@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components*/
 import React from 'react';
+import { KEY_PRODUCTS } from './productContext';
 
 const KEY_USER_TOKEN = 'metalstock:user-token';
 
@@ -13,7 +14,7 @@ export interface LoginPayload {
 }
 
 interface AuthContextType {
-	login: (payload: LoginPayload) => void;
+	login: (payload: LoginPayload) => boolean;
 	user: LoginPayload | null;
 	errorMsg: string | null;
 	logout: () => void;
@@ -35,15 +36,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 	const login = (payload: LoginPayload) => {
 		if(payload.email !== "admin@metalstock.com" || payload.password !== "admin123") {
 			setErrorMsg("Email ou senha inválidos.");
-			return;
+			return false;
 		}
+		setErrorMsg(null);
 		localStorage.setItem(KEY_USER_TOKEN, JSON.stringify(payload));
 		setUser(payload);
+		return true;
 	}
 
 	const logout = () => {
 		setUser(null);
 		localStorage.removeItem(KEY_USER_TOKEN);
+		localStorage.removeItem(KEY_PRODUCTS);
 	}
 
   return <AuthContext.Provider value={{ login, user, errorMsg, logout}}>{children}</AuthContext.Provider>;

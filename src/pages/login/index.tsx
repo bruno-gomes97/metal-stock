@@ -13,7 +13,7 @@ import { useAuth, type LoginPayload } from '../../context/authContext';
 export default function LoginPage() {
   const { login, errorMsg } = useAuth();
   const navigate = useNavigate();
-
+  
   const {
     register,
     handleSubmit,
@@ -24,9 +24,11 @@ export default function LoginPage() {
   });
   
   const onSubmit = (payload: LoginPayload) => {
-    login(payload);
-    reset();
-    navigate('/dashboard');
+    const success = login(payload);
+    if (success) {
+      reset();
+      navigate('/dashboard');
+    }
   };
 
   return (
