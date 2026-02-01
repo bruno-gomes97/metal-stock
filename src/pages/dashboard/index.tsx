@@ -1,8 +1,12 @@
 import { PackageIcon } from "lucide-react";
 import Text from "../../components/text";
+import { useProduct } from "../../context/productContext";
 import DashboardCard from "./components/card";
+import LowStockAlert from "./components/low-stock-alert";
 
 export default function DashboardPage() {
+	const { products } = useProduct();
+	const filteredLowStockProducts = products?.filter(product => product.quantityInitial <= product.quantityMinimum);
 
 	return (
 		<div className="flex min-h-screen bg-[var(--background)]">
@@ -15,13 +19,19 @@ export default function DashboardPage() {
 					<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
 						<DashboardCard />
 					</div>
-					<div className="text-[var(--card-foreground)] flex flex-col gap-6 rounded-xl border py-6 shadow-sm bg-[var(--card)] border-[var(--card)]">
-						<div className="px-6 py-12 text-center">
-							<PackageIcon className="w-12 h-12 mx-auto text-[var(--muted-foreground)] mb-4"/>
-							<Text variant="lg" className="text-[var(--foreground)] mb-2">Nenhum produto cadastrado</Text>
-							<p className="text-[var(--muted-foreground)]">Comece adicionando produtos ao seu estoque.</p>
+
+					{(!products || products.length === 0) && (
+						<div className="text-[var(--card-foreground)] flex flex-col gap-6 rounded-xl border py-6 shadow-sm bg-[var(--card)] border-[var(--card)]">
+							<div className="px-6 py-12 text-center">
+								<PackageIcon className="w-12 h-12 mx-auto text-[var(--muted-foreground)] mb-4"/>
+								<Text variant="lg" className="text-[var(--foreground)] mb-2">Nenhum produto cadastrado</Text>
+								<p className="text-[var(--muted-foreground)]">Comece adicionando produtos ao seu estoque.</p>
+							</div>
 						</div>
-					</div>
+					)}
+					{filteredLowStockProducts && (
+						<LowStockAlert products={filteredLowStockProducts} />
+					)}
 				</div>
 			</main>
 		</div>

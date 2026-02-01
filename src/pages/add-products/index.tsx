@@ -83,7 +83,7 @@ export default function AddProductsPage() {
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 						<TextField label="Quantidade Inicial" id="product-quantity-initial" type="number" min={0} {...register('productQuantityInitial')} />
 						<TextField label="Quantidade Minima" id="product-quantity-minimum" type="number" min={0} {...register('productQuantityMinimum')} />
-						<TextField label="Valor Unitário (R$)" id="product-unit-value" type="number" min={0} {...register('productUnitValue')} />
+						<TextField label="Valor Unitário (R$)" id="product-unit-value" type="number" min={0} step='0.01' {...register('productUnitValue')} />
 					</div>
 					<div className="space-y-2">
 						<TextField label="Fornecedor" id="product-supplier" type="text" placeholder="Nome do fornecedor" {...register('productSupplier')} />

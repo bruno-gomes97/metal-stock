@@ -16,7 +16,7 @@ const getQuantityStatus = (current: number, minimum: number) => {
 	return { label: 'normal', color: 'var(--foreground)' };
 };
 
-export const productTableColumns: ColumnDef<ProductPayload>[] = [
+export const getProductTableColumns = (onRemove: (productId: string) => void, onSave: (productId: string) => void): ColumnDef<ProductPayload>[] => [
 	{
 		header: "Código",
 		accessorKey: "code",
@@ -78,7 +78,7 @@ export const productTableColumns: ColumnDef<ProductPayload>[] = [
 					type="button" 
 					className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all shrink-0 outline-none text-[var(--foreground)] hover:text-[var(--muted-foreground)] hover:bg-[var(--primary)]/10 cursor-pointer mx-2"
 					title="Editar produto"
-					onClick={() => console.log('Editar:', row.id)}
+					onClick={() => onSave(row.id)}
 				>
 					<SquarePenIcon className="h-4 w-4"/>
 				</button>
@@ -86,7 +86,7 @@ export const productTableColumns: ColumnDef<ProductPayload>[] = [
 					type="button" 
 					className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all shrink-0 outline-none text-[var(--destructive)] hover:text-[var(--destructive)] hover:bg-[var(--destructive)]/10 cursor-pointer"
 					title="Excluir produto"
-					onClick={() => console.log('Excluir:', row.id)}
+					onClick={() => onRemove(row.id)}
 				>
 					<Trash2Icon className="h-4 w-4"/>
 				</button>

@@ -18,6 +18,8 @@ export interface ProductPayload extends Record<string, unknown> {
 
 interface ProductContextType {
 	addProduct: (product: ProductPayload) => void;
+	removeProduct: (productId: string) => void;
+	updateProduct: (product: ProductPayload) => void;
 	products: ProductPayload[] | null;
 }
 
@@ -41,8 +43,28 @@ export const ProductProvider = ({children}: {children: React.ReactNode}) => {
 		});
 	}
 
+	const removeProduct = (productId: string) => {
+		setProducts(prev => {
+			if(!prev) return null;
+			const updatedProducts = prev.filter(product => product.id !== productId);
+			localStorage.setItem(KEY_PRODUCTS, JSON.stringify(updatedProducts));
+			return updatedProducts;
+		})
+	}
+
+	const updateProduct = (updatedProduct: ProductPayload) => {
+		setProducts(prev => {
+			if(!prev) return null;
+			const updatedProducts = prev.map(product => 
+				product.id === updatedProduct.id ? updatedProduct : product
+			);
+			localStorage.setItem(KEY_PRODUCTS, JSON.stringify(updatedProducts));
+			return updatedProducts;
+		});
+	}
+
 	return (
-		<ProductContext.Provider value={{addProduct, products}}>
+		<ProductContext.Provider value={{addProduct, removeProduct, updateProduct, products}}>
 			{children}
 		</ProductContext.Provider>
 	)

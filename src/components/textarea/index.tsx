@@ -1,4 +1,4 @@
-interface TextAreaProps {
+interface TextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: string;
   id?: string;
   placeholder?: string;
