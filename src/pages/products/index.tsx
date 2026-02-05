@@ -4,14 +4,16 @@ import { Link } from "react-router-dom";
 import Table from "../../components/table";
 import Text from "../../components/text";
 import { type ProductPayload, useProduct } from "../../context/productContext";
-import EditProductModal from "./components/modal/edit-product";
-import RemoveProductModal from "./components/modal/remove-product";
+import EditProductModal from "./components/modal/edit-product.modal";
+import RemoveProductModal from "./components/modal/remove-product.modal";
+import StockMovementModal from "./components/modal/stock-movement.modal";
 import { getProductTableColumns } from "./table-structure";
 
 export default function ProductsPage() {
 	const {products, removeProduct, updateProduct} = useProduct();
 	const [productToRemove, setProductToRemove] = useState<ProductPayload | null>(null);
 	const [productToEdit, setProductToEdit] = useState<ProductPayload | null>(null);
+	const [productForStockMovement, setProductForStockMovement] = useState<ProductPayload | null>(null);
 	const productsCount = products ? products.length : 0;
 
 	const handleRemoveClick = (productId: string) => {
@@ -44,7 +46,14 @@ export default function ProductsPage() {
 		setProductToEdit(null);
 	};
 
-	const productTableColumns = getProductTableColumns(handleRemoveClick, handleEditClick);
+	const handleStockMovementClick = (productId: string) => {
+		const product = products?.find(p => p.id === productId);
+		if (product) {
+			setProductForStockMovement(product);
+		}
+	};
+
+	const productTableColumns = getProductTableColumns(handleRemoveClick, handleEditClick, handleStockMovementClick);
 
 	return (
 		<>
@@ -96,6 +105,12 @@ export default function ProductsPage() {
 				key={productToEdit?.id || 'empty'}
 				product={productToEdit} 
 				onCancel={() => setProductToEdit(null)}
+				onSave={handleSaveEdit}
+			/>
+			<StockMovementModal 
+				key={productForStockMovement?.id} 
+				product={productForStockMovement} 
+				onCancel={() => setProductForStockMovement(null)}
 				onSave={handleSaveEdit}
 			/>
 		</>

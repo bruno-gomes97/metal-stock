@@ -16,7 +16,10 @@ const getQuantityStatus = (current: number, minimum: number) => {
 	return { label: 'normal', color: 'var(--foreground)' };
 };
 
-export const getProductTableColumns = (onRemove: (productId: string) => void, onSave: (productId: string) => void): ColumnDef<ProductPayload>[] => [
+export const getProductTableColumns = (
+	onRemove: (productId: string) => void, 
+	onSave: (productId: string) => void, 
+	onStockMovement: (productId: string) => void): ColumnDef<ProductPayload>[] => [
 	{
 		header: "Código",
 		accessorKey: "code",
@@ -70,7 +73,7 @@ export const getProductTableColumns = (onRemove: (productId: string) => void, on
 					type="button" 
 					className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all shrink-0 outline-none text-[var(--primary)] hover:text-[var(--primary)] hover:bg-[var(--primary)]/10 cursor-pointer"
 					title="Movimentar estoque"
-					onClick={() => console.log('Movimentar:', row.id)}
+					onClick={() => onStockMovement(row.id)}
 				>
 					<ArrowUpDownIcon className="h-4 w-4"/>
 				</button>

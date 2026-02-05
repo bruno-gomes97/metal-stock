@@ -55,13 +55,14 @@ export default function EditProductModal({ product, onCancel, onSave }: EditProd
 							{...register('name')}
 						/>
 					</div>
-
-					<Textarea
-						label="Descrição"
-						id="product-description"
-						{...register('description')}
-						rows={3}
-					/>
+					<div className="space-y-2">
+						<Textarea
+							label="Descrição"
+							id="product-description"
+							{...register('description')}
+							rows={3}
+						/>
+					</div>
 
 					<div className="grid grid-cols-2 gap-4">
 						<TextField
@@ -75,8 +76,8 @@ export default function EditProductModal({ product, onCancel, onSave }: EditProd
 							{...register('location')}
 						/>
 					</div>
-
-					<div className="grid grid-cols-2 gap-4">
+					
+					<div className="grid grid-cols-3 gap-4">
 						<TextField
 							label="Quantidade Inicial"
 							id="product-quantity-initial"
@@ -92,9 +93,6 @@ export default function EditProductModal({ product, onCancel, onSave }: EditProd
 							type="number"
 							min={0}
 						/>
-					</div>
-
-					<div className="grid grid-cols-2 gap-4">
 						<TextField
 							label="Valor Unitário (R$)"
 							id="product-unit-value"
@@ -103,6 +101,9 @@ export default function EditProductModal({ product, onCancel, onSave }: EditProd
 							step="0.01"
 							min={0}
 						/>
+					</div>
+
+					<div className="space-y-2">
 						<TextField
 							label="Fornecedor"
 							id="product-supplier"
