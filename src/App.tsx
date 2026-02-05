@@ -4,6 +4,7 @@ import { ProductProvider } from './context/productContext';
 import DashboardLayout from './layouts/dashboardLayout';
 import AddProductsPage from './pages/add-products';
 import DashboardPage from './pages/dashboard';
+import EmployeesPage from './pages/employees';
 import LoginPage from './pages/login';
 import ProductsPage from './pages/products';
 
@@ -22,6 +23,7 @@ function App() {
               {/* Rotas filhas: /dashboard/* */}
               <Route path='products' element={<ProductsPage />} />
               <Route path='add-product' element={<AddProductsPage />} />
+              <Route path='employees' element={<EmployeesPage />} />
             </Route>
           </Routes>
          </ProductProvider>

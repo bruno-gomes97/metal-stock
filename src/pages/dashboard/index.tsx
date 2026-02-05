@@ -20,7 +20,7 @@ export default function DashboardPage() {
 						<DashboardCard />
 					</div>
 
-					{(!products || products.length === 0) && (
+					{(!products || filteredLowStockProducts?.length === 0) && (
 						<div className="text-[var(--card-foreground)] flex flex-col gap-6 rounded-xl border py-6 shadow-sm bg-[var(--card)] border-[var(--card)]">
 							<div className="px-6 py-12 text-center">
 								<PackageIcon className="w-12 h-12 mx-auto text-[var(--muted-foreground)] mb-4"/>
@@ -29,7 +29,8 @@ export default function DashboardPage() {
 							</div>
 						</div>
 					)}
-					{filteredLowStockProducts && (
+
+					{(filteredLowStockProducts && filteredLowStockProducts.length > 0) && (
 						<LowStockAlert products={filteredLowStockProducts} />
 					)}
 				</div>

@@ -1,14 +1,17 @@
+type Rounded = 'lg' | 'full';
+
 interface IconContainerProps {
   children: React.ReactNode;
   colorBg?: string;
   height?: string;
   width?: string;
   opacity?: string;
+  rounded?: Rounded;
 }
 
-export default function IconContainer({ children, colorBg, height = '16', width = '16', opacity }: IconContainerProps) {
+export default function IconContainer({ children, colorBg, height = '16', width = '16', opacity, rounded = 'lg' }: IconContainerProps) {
   return (
-    <div className={`max-auto w-${width} h-${height} bg-[var(--${colorBg})]/${opacity} rounded-lg flex items-center justify-center`}>
+    <div className={`max-auto w-${width} h-${height} bg-[var(--${colorBg})]/${opacity} rounded-${rounded} flex items-center justify-center`}>
       {children}
     </div>
   );
