@@ -2,6 +2,7 @@ import { CirclePlusIcon, Minus } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export type MovementType = 'entrada' | 'saida';
+export type EmployeeType = 'ADMIN' | 'EMP';
 
 interface MovementTypeSelectProps {
 	value: MovementType | null;
