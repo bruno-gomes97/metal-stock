@@ -4,16 +4,18 @@ import React from "react";
 export const KEY_EMPLOYEES = "metalstock:employees";
 
 export interface EmployeePayload extends Record<string, unknown> {
-	id?: string;
+	id: string;
 	name: string;
 	email: string;
 	password: string;
 	role: "ADMIN" | "EMP";
+	createdAt: string;
 }
 
 interface EmployeeContextType {
 	employees: EmployeePayload[] | null;
 	addEmployee: (employee: EmployeePayload) => void;
+	removeEmployee: (employeeId: string) => void;
 }
 
 export const EmployeeContext = React.createContext<EmployeeContextType | undefined>(undefined);
@@ -36,8 +38,16 @@ export const EmployeeProvider = ({ children }: { children: React.ReactNode }) =>
 		})
 	}
 
+	const removeEmployee = (employeeEmail: string) => {
+		setEmployees(prev => {
+			const updatedEmployees = prev ? prev.filter(emp => emp.email !== employeeEmail) : null;
+			localStorage.setItem(KEY_EMPLOYEES, JSON.stringify(updatedEmployees));
+			return updatedEmployees;
+		})
+	}
+
 	return (
-		<EmployeeContext.Provider value={{employees, addEmployee}}>
+		<EmployeeContext.Provider value={{employees, addEmployee, removeEmployee}}>
 			{children}
 		</EmployeeContext.Provider>
 	)

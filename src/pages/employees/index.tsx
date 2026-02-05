@@ -2,14 +2,12 @@ import { PlusIcon } from "lucide-react";
 import React from "react";
 import Card from "../../components/card";
 import PageHeader from "../../components/page-header";
-import { useAuth } from "../../context/authContext";
+import { useEmployee } from "../../context/employeeContext";
 import AddEmployeeModal from "./components/modals/add-employee.modal";
-
 
 export default function EmployeesPage() {
 	const [openModal, setOpenModal] = React.useState(false);
-	const { user } = useAuth();
-	const isAdmin = user?.email === "admin@metalstock.com" ? true : false;
+	const {employees} = useEmployee();
 
 	return (
 		<>
@@ -26,7 +24,16 @@ export default function EmployeesPage() {
 					}}
 				/>
 				<div className="grid gap-4 md:grid-cols-2 md:grid-cols-3">
-					<Card isAdmin={isAdmin} />
+					{employees?.map(employee => (
+						<Card 
+							key={`card-employee-${employee.name}`} 
+							name={employee.name}
+							email={employee.email} 
+							role={employee.role}
+							createdAt={employee.createdAt} 
+						/>
+					))}
+					
 				</div>
 			</div>
 			{openModal && (

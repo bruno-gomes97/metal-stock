@@ -14,7 +14,12 @@ export default function AddEmployeeModal({ onCancel }: AddEmployeeModalProps) {
 	const {addEmployee} = useEmployee();
 
 	const onSubmit = (data: EmployeePayload) => {
-		addEmployee(data);
+		const newEmployee: EmployeePayload = {
+			...data,
+			id: crypto.randomUUID(),
+			createdAt: new Date().toISOString(),
+		}
+		addEmployee(newEmployee);
 	}
 
 	return (
