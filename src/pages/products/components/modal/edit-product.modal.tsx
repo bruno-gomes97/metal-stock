@@ -1,5 +1,6 @@
 import { XIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import Text from "../../../../components/text";
 import TextField from "../../../../components/text-field";
 import Textarea from "../../../../components/textarea";
@@ -19,7 +20,17 @@ export default function EditProductModal({ product, onCancel, onSave }: EditProd
 	if(!product) return null;
 
 	const onSubmit = (data: ProductPayload) => {
-		onSave(data);
+		const updatedProduct = {
+			...product,
+			...data,
+			quantityInitial: Number(data.quantityInitial),
+			quantityMinimum: Number(data.quantityMinimum),
+			unitValue: Number(data.unitValue),
+		};
+		toast.success(`Produto "${updatedProduct.name}" atualizado com sucesso!`, {
+			autoClose: 2000
+		});
+		onSave(updatedProduct);
 	};
 	
 	return (

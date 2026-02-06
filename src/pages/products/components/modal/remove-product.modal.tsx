@@ -1,4 +1,5 @@
 import { XIcon } from "lucide-react";
+import { toast } from "react-toastify";
 import Text from "../../../../components/text";
 import type { ProductPayload } from "../../../../context/productContext";
 
@@ -9,6 +10,13 @@ interface RemoveProductModalProps {
 }
 
 export default function RemoveProductModal({ product, onConfirm, onCancel }: RemoveProductModalProps) {
+	const handleRemove = () => {
+		toast.success(`Produto "${product?.name}" excluído com sucesso!`, {
+			autoClose: 2000
+		});
+		onConfirm();
+	}
+	
 	if (!product) return null;
 
 	return (
@@ -40,7 +48,7 @@ export default function RemoveProductModal({ product, onConfirm, onCancel }: Rem
 						Cancelar
 					</button>
 					<button
-						onClick={onConfirm}
+						onClick={handleRemove}
 						className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all h-9 px-4 bg-[var(--destructive)] text-[var(--destructive-foreground)] hover:bg-[var(--destructive)]/90"
 					>
 						Excluir

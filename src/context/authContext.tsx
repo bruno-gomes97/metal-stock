@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components*/
 import React from 'react';
+import { toast } from 'react-toastify';
 import { KEY_PRODUCTS } from './productContext';
 
 const KEY_USER_TOKEN = 'metalstock:user-token';
@@ -44,6 +45,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 	}
 
 	const logout = () => {
+		toast.info('Logout realizado com sucesso!', {
+			autoClose: 1500
+		});
 		setUser(null);
 		localStorage.removeItem(KEY_USER_TOKEN);
 		localStorage.removeItem(KEY_PRODUCTS);

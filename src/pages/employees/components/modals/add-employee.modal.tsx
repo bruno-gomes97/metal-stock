@@ -1,6 +1,7 @@
 import { XIcon } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import Button from "../../../../components/button";
 import type { EmployeeType } from "../../../../components/select/employee-type-select";
 import EmployeeTypeSelect from "../../../../components/select/employee-type-select";
@@ -24,6 +25,9 @@ export default function AddEmployeeModal({ onCancel }: AddEmployeeModalProps) {
 			id: crypto.randomUUID(),
 			createdAt: new Date().toISOString(),
 		}
+		toast.success(`Funcionário "${newEmployee.name}" cadastrado com sucesso!`, {
+			autoClose: 2000
+		});
 		addEmployee(newEmployee);
 	}
 

@@ -1,6 +1,7 @@
 import { XIcon } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import Button from "../../../../components/button";
 import MovementTypeSelect, { type MovementType } from "../../../../components/select/movement-type-select";
 import Text from "../../../../components/text";
@@ -43,6 +44,9 @@ export default function StockMovementModal({ product, onCancel, onSave }: StockM
 			...product,
 			quantityInitial: newQuantity(),
 		};
+		toast.warning(`Estoque do produto "${updatedProduct.name}" atualizado para ${updatedProduct.quantityInitial} unidades!`, {
+			autoClose: 2000
+		});
 		onSave(updatedProduct);
 	};
 

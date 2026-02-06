@@ -1,6 +1,7 @@
 import { ArrowLeftIcon, PackageIcon, SaveIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import Button from "../../components/button";
 import IconContainer from "../../components/icon-container";
 import Text from "../../components/text";
@@ -40,6 +41,9 @@ export default function AddProductsPage() {
 			supplier: payload.productSupplier,
 		};
 		addProduct(newProduct);
+		toast.success('Produto adicionado com sucesso!', {
+			autoClose: 1500
+		});
 		navigate('/dashboard/products');
 	}
 	

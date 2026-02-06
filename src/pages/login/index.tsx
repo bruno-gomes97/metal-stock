@@ -1,8 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AlertCircleIcon, WrenchIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
-
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { signUpFormSchema } from '../../_schemas/auth-schema';
 import Button from '../../components/button';
 import IconContainer from '../../components/icon-container';
@@ -27,6 +27,9 @@ export default function LoginPage() {
     const success = login(payload);
     if (success) {
       reset();
+      toast.success('Login bem-sucedido!', {
+        autoClose: 1500
+      });
       navigate('/dashboard');
     }
   };
@@ -56,18 +59,22 @@ export default function LoginPage() {
                 <Text variant="sm">{errorMsg}</Text>
               </div>
             )}
-            <TextField label="Email" type="email" id="email" placeholder="seu@email.com" {...register('email')} />
-            {errors.email && (
-              <Text variant="xs" className="text-red-500">
-                {errors.email.message}
-              </Text>
-            )}
-            <TextField label="Senha" type="password" id="password" placeholder="Sua senha" {...register('password')} />
-            {errors.password && (
-              <Text variant="xs" className="text-red-500">
-                {errors.password.message}
-              </Text>
-            )}
+            <div className='space-y-2'>
+              <TextField label="Email" type="email" id="email" placeholder="seu@email.com" {...register('email')} />
+              {errors.email && (
+                <Text variant="xs" className="text-red-500">
+                  {errors.email.message}
+                </Text>
+              )}
+            </div>
+            <div className='space-y-2'>
+              <TextField label="Senha" type="password" id="password" placeholder="Sua senha" {...register('password')} />
+              {errors.password && (
+                <Text variant="xs" className="text-red-500">
+                  {errors.password.message}
+                </Text>
+              )}
+            </div>
             <Button type='submit'>Entrar</Button>
           </form>
           <div className="mt-6 p-4 bg-[var(--muted)] rounded-lg">
