@@ -91,7 +91,7 @@ export default function AddProductsPage() {
 					<footer className="flex justify-end gap-3 pt-4">
 						<Button variant="tertiary" width="36">Cancelar</Button>
 						<Button type="submit" variant="primary" width="36">
-							<SaveIcon className="w-10 h-10"/> 
+							<SaveIcon className="w-5 h-5"/> 
 							Salvar Produto
 						</Button>
 					</footer>

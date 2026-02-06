@@ -7,7 +7,6 @@ const KEY_USER_TOKEN = 'metalstock:user-token';
 interface AuthProviderProps {
   children: React.ReactNode;
 }
-
 export interface LoginPayload {
 	email: string;
 	password: string;

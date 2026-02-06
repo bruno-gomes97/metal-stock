@@ -4,7 +4,7 @@ import IconContainer from "../icon-container";
 import Tag from "../tag";
 import Text from "../text";
 
-type userRole = "ADMIN" | "EMP";
+type userRole = "ADMIN" | "EMP" | null;
 
 interface CardProps {
 	name: string;

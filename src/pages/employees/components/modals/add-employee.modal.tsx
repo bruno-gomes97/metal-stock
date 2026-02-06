@@ -1,6 +1,9 @@
 import { XIcon } from "lucide-react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../../../../components/button";
+import type { EmployeeType } from "../../../../components/select/employee-type-select";
+import EmployeeTypeSelect from "../../../../components/select/employee-type-select";
 import Text from "../../../../components/text";
 import TextField from "../../../../components/text-field";
 import { useEmployee, type EmployeePayload } from "../../../../context/employeeContext";
@@ -10,12 +13,14 @@ interface AddEmployeeModalProps {
 }
 
 export default function AddEmployeeModal({ onCancel }: AddEmployeeModalProps) {
+	const [employeeType, setEmployeeType] = useState<EmployeeType | null>(null);
 	const { register, handleSubmit } = useForm<EmployeePayload>();
 	const {addEmployee} = useEmployee();
 
 	const onSubmit = (data: EmployeePayload) => {
 		const newEmployee: EmployeePayload = {
 			...data,
+			role: employeeType,
 			id: crypto.randomUUID(),
 			createdAt: new Date().toISOString(),
 		}
@@ -69,12 +74,11 @@ export default function AddEmployeeModal({ onCancel }: AddEmployeeModalProps) {
 						/>
 					</div>
 					<div className="space-y-2">
-						<select 
-							{...register("role")}
-						>
-							<option value="ADMIN">Administrador</option>
-							<option value="EMP">Funcionário</option>
-						</select>
+						<EmployeeTypeSelect 
+							value={employeeType}
+							onChange={setEmployeeType}
+							label="Função"
+						/>
 					</div>
 					<footer className="flex justify-end gap-2">
 						<Button

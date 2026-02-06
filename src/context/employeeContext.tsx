@@ -8,7 +8,7 @@ export interface EmployeePayload extends Record<string, unknown> {
 	name: string;
 	email: string;
 	password: string;
-	role: "ADMIN" | "EMP";
+	role: "ADMIN" | "EMP" | null;
 	createdAt: string;
 }
 

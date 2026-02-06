@@ -8,6 +8,7 @@ import DashboardPage from './pages/dashboard';
 import EmployeesPage from './pages/employees';
 import LoginPage from './pages/login';
 import ProductsPage from './pages/products';
+import SearchProductPage from './pages/search-product';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
                 <Route path='products' element={<ProductsPage />} />
                 <Route path='add-product' element={<AddProductsPage />} />
                 <Route path='employees' element={<EmployeesPage />} />
+                <Route path='search-product' element={<SearchProductPage />} />
               </Route>
             </Routes>
           </EmployeeProvider>

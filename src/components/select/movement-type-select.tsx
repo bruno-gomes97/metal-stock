@@ -2,7 +2,6 @@ import { CirclePlusIcon, Minus } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 export type MovementType = 'entrada' | 'saida';
-export type EmployeeType = 'ADMIN' | 'EMP';
 
 interface MovementTypeSelectProps {
 	value: MovementType | null;
@@ -91,7 +90,7 @@ export default function MovementTypeSelect({ value, onChange, label }: MovementT
 							<div className="flex items-center justify-center w-4 h-4">
 								<CirclePlusIcon className="w-4 h-4 text-[var(--chart-2)]" />
 							</div>
-							<span className="font-medium text-[var(--foreground)]">Entrada</span>
+							<span className="text-sm text-[var(--foreground)]">Entrada</span>
 						</button>
 
 						{/* Opção Saída */}
@@ -103,7 +102,7 @@ export default function MovementTypeSelect({ value, onChange, label }: MovementT
 							<div className="flex items-center justify-center w-4 h-4">
 								<Minus className="w-4 h-4 text-[var(--destructive)]" />
 							</div>
-							<span className="font-medium text-[var(--foreground)]">Saída</span>
+							<span className="text-sm text-[var(--foreground)]">Saída</span>
 						</button>
 					</div>
 				)}

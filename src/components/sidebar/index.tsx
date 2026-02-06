@@ -1,4 +1,4 @@
-import { CirclePlusIcon, LayoutDashboardIcon, LogOutIcon, PackageIcon, SearchIcon, UsersIcon, WrenchIcon } from "lucide-react";
+import { CirclePlusIcon, LayoutDashboardIcon, LogOutIcon, PackageIcon, SearchIcon, UsersIcon, Wrench } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
 import Button from "../button";
@@ -8,7 +8,7 @@ import Text from "../text";
 const listItemsNavigation = [
 	{ label: 'Dashboard', icon: <LayoutDashboardIcon className="w-5 h-5" />, to: '/dashboard', active: false },
 	{ label: 'Produtos', icon: <PackageIcon className="w-5 h-5" />, to: '/dashboard/products', active: false },
-	{ label: 'Buscar', icon: <SearchIcon className="w-5 h-5" />, to: '/search', active: false },
+	{ label: 'Buscar', icon: <SearchIcon className="w-5 h-5" />, to: '/dashboard/search-product', active: false },
 	{ label: 'Adicionar Produto', icon: <CirclePlusIcon className="w-5 h-5" />, to: '/dashboard/add-product', active: false },
 	{ label: 'Funcionários', icon: <UsersIcon className="w-5 h-5" />, to: '/dashboard/employees', active: false },
 ]
@@ -34,7 +34,7 @@ export default function Sidebar() {
 			<div className="p-6 border-b border-[var(--sidebar-border)]">
 				<div className="flex items-center gap-3">
 					<IconContainer height={'10'} width={'10'} colorBg="primary">
-						<WrenchIcon className="w-5 h-5 text-[var(--primary-foreground)]" />
+						<Wrench className="w-5 h-5 text-[var(--primary)]" />
 					</IconContainer>
 					<div>
 						<Text variant="xl" className="text-[var(--sidebar-foreground)]">MetalStock</Text>
