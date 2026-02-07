@@ -366,12 +366,6 @@ Contribuições são sempre bem-vindas! Sinta-se à vontade para abrir issues ou
 
 ---
 
-## 📞 Suporte
-
-Para dúvidas ou suporte, entre em contato através das issues do projeto.
-
----
-
 <p align="center">
   <strong>Metal Stock</strong> - Controle de Estoque Inteligente 📦
 </p
